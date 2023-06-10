@@ -60,9 +60,12 @@ export const App = () => {
     const modalImage = { url: image.largeImageURL, alt: image.tags };
     setModalImage(modalImage);
     setShowModal(true);
+    // setShowModal(prevShowModal => !prevShowModal);
+    console.log('modalimg', modalImage, 'sh-', showModal);
   };
   const handleCloseModal = () => {
     setShowModal(false);
+    // setShowModal(prevShowModal => !prevShowModal);
   };
   return (
     <Container>

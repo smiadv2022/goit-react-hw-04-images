@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import { Overlay, ModalImage } from './Modal.styled';
 
-export const Modal = (image, onModalClick) => {
+export const Modal = ({ image, onModalClick }) => {
+  useEffect(() => {
+    const click = e => {
+      if (e.code === 'Escape') {
+        onModalClick();
+      }
+    };
+    window.addEventListener('keydown', click);
+    return () => {
+      window.removeEventListener('keydown', click);
+    };
+  }, [onModalClick]);
   const onModalOverlayClose = e => {
     if (e.currentTarget === e.target) {
       onModalClick();
     }
   };
   const { url, alt } = image;
+  console.log('image', url);
   return (
     <Overlay onClick={onModalOverlayClose}>
       <ModalImage>
