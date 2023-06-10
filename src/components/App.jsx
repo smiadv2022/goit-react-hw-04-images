@@ -67,10 +67,19 @@ export const App = () => {
     setShowModal(false);
     // setShowModal(prevShowModal => !prevShowModal);
   };
+  const showLoadMoreButton = images.length !== 0 && page < totalPages;
+  const handleLoadMore = () => {
+    setPage(prevState => prevState + 1);
+  };
   return (
     <Container>
       <SearchbarForm onSubmit={handleSearch} />
       <ImageGallery images={images} openModal={handleOpenModal} />
+      {showLoadMoreButton && (
+        <Button onClick={handleLoadMore} disabled={isLoading}>
+          {isLoading ? 'Loading...' : 'Load More'}
+        </Button>
+      )}
       {showModal && (
         <Modal image={modalImage} onModalClick={handleCloseModal} />
       )}
