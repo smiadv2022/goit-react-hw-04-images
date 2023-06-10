@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import swal from 'sweetalert';
 import { FcSearch } from 'react-icons/fc';
 
@@ -10,40 +10,78 @@ import {
   SearchFormButton,
 } from './Searchbar.styled';
 
-export class SearchbarForm extends React.Component {
-  state = {
-    searchText: '',
+export const SearchbarForm = ({ onSubmit }) => {
+  const [searchText, setSearchText] = useState('');
+
+  const handleChange = e => {
+    setSearchText(e.target.value.toLowerCase());
   };
-  handleChange = e => {
-    this.setState({ searchText: e.target.value.toLowerCase() });
-  };
-  handleSubmit = e => {
+
+  const handleSubmit = e => {
     e.preventDefault();
-    if (this.state.searchText.trim() === '') {
+    if (searchText.trim() === '') {
       return;
     }
-    this.props.onSubmit(this.state.searchText);
+    onSubmit(searchText);
 
-    this.setState({ searchText: '' });
+    setSearchText('');
   };
-  render() {
-    return (
-      <Searchbar>
-        <SearchForm onSubmit={this.handleSubmit}>
-          <SearchFormLabel></SearchFormLabel>
-          <SearchFormInput
-            type="text"
-            autocomplete="off"
-            placeholder="Search images and
+
+  return (
+    <Searchbar>
+      <SearchForm onSubmit={handleSubmit}>
+        {' '}
+        <SearchFormLabel></SearchFormLabel>
+        <SearchFormInput
+          type="text"
+          autocomplete="off"
+          placeholder="Search images and
             photos"
-            onChange={this.handleChange}
-            value={this.state.searchText}
-          ></SearchFormInput>
-          <SearchFormButton>
-            <FcSearch />
-          </SearchFormButton>
-        </SearchForm>
-      </Searchbar>
-    );
-  }
-}
+          onChange={handleChange}
+          value={searchText}
+        ></SearchFormInput>{' '}
+        <SearchFormButton>
+          <FcSearch />
+        </SearchFormButton>
+      </SearchForm>
+    </Searchbar>
+  );
+};
+
+// export class SearchbarForm extends React.Component {
+//   state = {
+//     searchText: '',
+//   };
+//   handleChange = e => {
+//     this.setState({ searchText: e.target.value.toLowerCase() });
+//   };
+//   handleSubmit = e => {
+//     e.preventDefault();
+//     if (this.state.searchText.trim() === '') {
+//       return;
+//     }
+//     this.props.onSubmit(this.state.searchText);
+
+//     this.setState({ searchText: '' });
+//   };
+//   render() {
+//     return (
+//       <Searchbar>
+//         <SearchForm onSubmit={this.handleSubmit}>
+//           <SearchFormLabel></SearchFormLabel>
+//           <SearchFormInput
+//             type="text"
+//             autocomplete="off"
+//             placeholder="Search images and
+//             photos"
+//             onChange={this.handleChange}
+//             value={this.state.searchText}
+//           ></SearchFormInput>
+//           <SearchFormButton>
+//             <FcSearch />
+//           </SearchFormButton>
+//         </SearchForm>
+//       </Searchbar>
+//     );
+//   }
+// }
