@@ -7,6 +7,7 @@ import { fetchGallery } from './Api/ApiGallery';
 import { Modal } from './Modal/Modal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Loader } from './Loader/Loader';
 
 export const App = () => {
   const [search, setSearch] = useState('');
@@ -25,7 +26,7 @@ export const App = () => {
     setTotalPages(0);
     setImages([]);
     setError(null);
-    setIsLoading(false);
+    setIsLoading(true);
     setShowModal(false);
     setModalImage({});
     // console.log(searchText, 'sss', search);
@@ -75,7 +76,9 @@ export const App = () => {
   return (
     <Container>
       <SearchbarForm onSubmit={handleSearch} />
+      {/* <Loader /> */}
       <ImageGallery images={images} openModal={handleOpenModal} />
+      {isLoading && <Loader />}
       {showLoadMoreButton && (
         <Button onClick={handleLoadMore} disabled={isLoading}>
           {isLoading ? 'Loading...' : 'Load More'}

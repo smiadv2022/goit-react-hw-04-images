@@ -1,10 +1,10 @@
 import { ColorRing } from 'react-loader-spinner';
-import { Wrapper } from './Loader.styled';
+import { Overlay } from './Loader.styled';
 
 export const Loader = () => {
   return (
-    <Wrapper>
+    <Overlay>
       <ColorRing />
-    </Wrapper>
+    </Overlay>
   );
 };
