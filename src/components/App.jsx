@@ -83,7 +83,7 @@ export const App = () => {
       {showModal && (
         <Modal image={modalImage} onModalClick={handleCloseModal} />
       )}
-      {error && <Message>{error} </Message>}
+      {/* {error && <Message>{error} </Message>} */}
       <ToastContainer
         position="top-right"
         autoClose={2000}
