@@ -19,7 +19,7 @@ export const App = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleSearch = searchText => {
-    console.log(searchText, 'sppp', search);
+    console.log(searchText, 'sbar', search);
     setSearch(searchText);
     setPage(1);
     setTotalPages(0);
