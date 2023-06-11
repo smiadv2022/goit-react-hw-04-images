@@ -20,7 +20,7 @@ export const Modal = ({ image, onModalClick }) => {
     }
   };
   const { url, alt } = image;
-  console.log('image', url);
+  // console.log('image', url);
   return (
     <Overlay onClick={onModalOverlayClose}>
       <ModalImage>

@@ -19,7 +19,7 @@ export const App = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleSearch = searchText => {
-    console.log(searchText, 'sbar', search);
+    // console.log(searchText, 'sbar', search);
     setSearch(searchText);
     setPage(1);
     setTotalPages(0);
@@ -28,7 +28,7 @@ export const App = () => {
     setIsLoading(false);
     setShowModal(false);
     setModalImage({});
-    console.log(searchText, 'sss', search);
+    // console.log(searchText, 'sss', search);
   };
   const perPage = 12;
 
@@ -38,7 +38,7 @@ export const App = () => {
         setIsLoading(true);
         try {
           const response = await fetchGallery({ search, page, perPage });
-          console.log(search, 'rrr', response.hits);
+          // console.log(search, 'rrr', response.hits);
           if (response.hits.length === 0) {
             toast.info('Change filter');
             throw new Error(`Sorry, no photo from: "${search}!"`);
@@ -62,7 +62,7 @@ export const App = () => {
     setModalImage(modalImage);
     setShowModal(true);
     // setShowModal(prevShowModal => !prevShowModal);
-    console.log('modalimg', modalImage, 'sh-', showModal);
+    // console.log('modalimg', modalImage, 'sh-', showModal);
   };
   const handleCloseModal = () => {
     setShowModal(false);
