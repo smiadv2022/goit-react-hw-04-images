@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button/Button.styled';
-import { Container, Message } from './Styles.styled';
+import { Container } from './Styles.styled';
 import { SearchbarForm } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { fetchGallery } from './Api/ApiGallery';
@@ -13,7 +13,7 @@ export const App = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [images, setImages] = useState([]);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [modalImage, setModalImage] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -24,7 +24,7 @@ export const App = () => {
     setPage(1);
     setTotalPages(0);
     setImages([]);
-    setError(null);
+    // setError(null);
     setIsLoading(false);
     setShowModal(false);
     setModalImage({});
@@ -45,9 +45,9 @@ export const App = () => {
           }
           setImages(prevImages => [...prevImages, ...response.hits]);
           setTotalPages(Math.ceil(response.totalHits / 12));
-          setError(null);
+          // setError(null);
         } catch (error) {
-          setError(error.message);
+          // setError(error.message);
         } finally {
           setIsLoading(false);
         }
