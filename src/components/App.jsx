@@ -33,26 +33,26 @@ export const App = () => {
   const perPage = 12;
 
   useEffect(() => {
-    if (search !== '') {
-      const fnFetch = async () => {
-        setIsLoading(true);
-        try {
-          const response = await fetchGallery({ search, page, perPage });
-          // console.log(search, 'rrr', response.hits);
-          if (response.hits.length === 0) {
-            toast.info('Change filter');
-            throw new Error(`Sorry, no photo from: "${search}!"`);
-          }
-          setImages(prevImages => [...prevImages, ...response.hits]);
-          setTotalPages(Math.ceil(response.totalHits / 12));
-          setError(null);
-        } catch (error) {
-          // toast.info('Sorry, no photo from: "${search}!"');
-          setError(error.message);
-        } finally {
-          setIsLoading(false);
+    const fnFetch = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetchGallery({ search, page, perPage });
+        // console.log(search, 'rrr', response.hits);
+        if (response.hits.length === 0) {
+          toast.info('Change filter');
+          throw new Error(`Sorry, no photo from: "${search}!"`);
         }
-      };
+        setImages(prevImages => [...prevImages, ...response.hits]);
+        setTotalPages(Math.ceil(response.totalHits / 12));
+        setError(null);
+      } catch (error) {
+        // toast.info('Sorry, no photo from: "${search}!"');
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    if (search !== '') {
       fnFetch();
     }
   }, [search, page]);
