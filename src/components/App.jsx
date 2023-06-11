@@ -33,8 +33,8 @@ export const App = () => {
   const perPage = 12;
 
   useEffect(() => {
-    const fnFetch = async () => {
-      if (page !== 1 || search !== '') {
+    if (search !== '') {
+      const fnFetch = async () => {
         setIsLoading(true);
         try {
           const response = await fetchGallery({ search, page, perPage });
@@ -52,9 +52,9 @@ export const App = () => {
         } finally {
           setIsLoading(false);
         }
-      }
-    };
-    fnFetch();
+      };
+      fnFetch();
+    }
   }, [search, page]);
 
   const handleOpenModal = image => {
